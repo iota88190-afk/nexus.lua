@@ -1,106 +1,72 @@
--- 🧠 BRAINROT AUTO TP - DELTA PC EMULATOR 🧠
+-- 🧠 BRAINROT AUTO TP - DELTA PC SIMPLE 🧠
 local Players = game:GetService("Players")
-local RunService = game:GetService("RunService")
 local player = Players.LocalPlayer
 local basePosition = Vector3.new(0, 10, 0)
 
 -- Supprime ancien GUI
 pcall(function()
-    player.PlayerGui:FindFirstChild("BrainrotAutoTP"):Destroy()
+    player.PlayerGui:FindFirstChild("SimpleAutoTP"):Destroy()
 end)
 
--- GUI pour Delta PC
+-- GUI Ultra Simple pour Delta PC
 local gui = Instance.new("ScreenGui")
-gui.Name = "BrainrotAutoTP"
+gui.Name = "SimpleAutoTP"
 gui.Parent = player.PlayerGui
 
 local frame = Instance.new("Frame")
-frame.Size = UDim2.new(0, 200, 0, 80)
-frame.Position = UDim2.new(0, 20, 0, 20)
-frame.BackgroundColor3 = Color3.fromRGB(25, 25, 35)
-frame.BorderSizePixel = 0
+frame.Size = UDim2.new(0, 150, 0, 50)
+frame.Position = UDim2.new(0, 50, 0, 50)
+frame.BackgroundColor3 = Color3.new(0.2, 0.2, 0.3)
+frame.BorderColor3 = Color3.new(1, 1, 1)
+frame.BorderSizePixel = 2
 frame.Active = true
 frame.Draggable = true
 frame.Parent = gui
 
--- Coins arrondis
-local corner = Instance.new("UICorner")
-corner.CornerRadius = UDim.new(0, 8)
-corner.Parent = frame
-
--- Titre
+-- Titre simple
 local title = Instance.new("TextLabel")
-title.Size = UDim2.new(1, 0, 0, 25)
-title.BackgroundColor3 = Color3.fromRGB(255, 100, 255)
-title.Text = "🧠 BRAINROT AUTO TP - DELTA PC"
-title.TextColor3 = Color3.white
-title.TextScaled = true
-title.Font = Enum.Font.GothamBold
+title.Size = UDim2.new(1, 0, 0, 20)
+title.Position = UDim2.new(0, 0, 0, 0)
+title.BackgroundColor3 = Color3.new(1, 0.4, 1)
+title.Text = "BRAINROT AUTO TP"
+title.TextColor3 = Color3.new(1, 1, 1)
+title.TextSize = 12
+title.Font = Enum.Font.SourceSansBold
 title.Parent = frame
 
-local titleCorner = Instance.new("UICorner")
-titleCorner.CornerRadius = UDim.new(0, 8)
-titleCorner.Parent = title
-
--- Bouton Save
+-- Bouton Save simple
 local saveBtn = Instance.new("TextButton")
-saveBtn.Size = UDim2.new(0.6, 0, 0, 20)
-saveBtn.Position = UDim2.new(0.02, 0, 0, 30)
-saveBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
-saveBtn.Text = "💾 SAVE BASE POSITION"
-saveBtn.TextColor3 = Color3.white
-saveBtn.TextScaled = true
-saveBtn.Font = Enum.Font.Gotham
+saveBtn.Size = UDim2.new(0.6, 0, 0, 25)
+saveBtn.Position = UDim2.new(0.02, 0, 0, 22)
+saveBtn.BackgroundColor3 = Color3.new(0, 0.8, 0)
+saveBtn.Text = "SAVE BASE"
+saveBtn.TextColor3 = Color3.new(1, 1, 1)
+saveBtn.TextSize = 10
+saveBtn.Font = Enum.Font.SourceSans
 saveBtn.Parent = frame
 
-local saveBtnCorner = Instance.new("UICorner")
-saveBtnCorner.CornerRadius = UDim.new(0, 5)
-saveBtnCorner.Parent = saveBtn
-
--- Status
+-- Status simple
 local status = Instance.new("TextLabel")
-status.Size = UDim2.new(0.35, 0, 0, 20)
-status.Position = UDim2.new(0.63, 0, 0, 30)
-status.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
-status.Text = "⚡ ACTIVE"
-status.TextColor3 = Color3.white
-status.TextScaled = true
-status.Font = Enum.Font.GothamBold
+status.Size = UDim2.new(0.35, 0, 0, 25)
+status.Position = UDim2.new(0.63, 0, 0, 22)
+status.BackgroundColor3 = Color3.new(0, 0.6, 0)
+status.Text = "READY"
+status.TextColor3 = Color3.new(1, 1, 1)
+status.TextSize = 10
+status.Font = Enum.Font.SourceSans
 status.Parent = frame
 
-local statusCorner = Instance.new("UICorner")
-statusCorner.CornerRadius = UDim.new(0, 5)
-statusCorner.Parent = status
-
--- Info
-local info = Instance.new("TextLabel")
-info.Size = UDim2.new(1, 0, 0, 15)
-info.Position = UDim2.new(0, 0, 0, 55)
-info.BackgroundTransparency = 1
-info.Text = "Ramasse un brainrot = Téléportation automatique"
-info.TextColor3 = Color3.fromRGB(200, 200, 200)
-info.TextScaled = true
-info.Font = Enum.Font.Gotham
-info.Parent = frame
-
--- Fonction TP optimisée pour Delta PC
-local function deltaAutoTP()
-    spawn(function()
-        local char = player.Character
-        if char and char:FindFirstChild("HumanoidRootPart") then
-            -- Méthode Delta PC Emulator
-            local hrp = char.HumanoidRootPart
-            hrp.CFrame = CFrame.new(basePosition)
-            
-            -- Animation du status
-            status.Text = "🧠 TÉLÉPORTÉ!"
-            status.BackgroundColor3 = Color3.fromRGB(255, 0, 255)
-            
-            wait(2)
-            status.Text = "⚡ ACTIVE"
-            status.BackgroundColor3 = Color3.fromRGB(0, 150, 0)
-        end
-    end)
+-- Fonction TP
+local function autoTP()
+    local char = player.Character
+    if char and char:FindFirstChild("HumanoidRootPart") then
+        char.HumanoidRootPart.CFrame = CFrame.new(basePosition)
+        status.Text = "TP!"
+        status.BackgroundColor3 = Color3.new(1, 0, 1)
+        wait(1)
+        status.Text = "READY"
+        status.BackgroundColor3 = Color3.new(0, 0.6, 0)
+    end
 end
 
 -- Save position
@@ -108,39 +74,38 @@ saveBtn.MouseButton1Click:Connect(function()
     local char = player.Character
     if char and char:FindFirstChild("HumanoidRootPart") then
         basePosition = char.HumanoidRootPart.Position
-        saveBtn.Text = "✅ POSITION SAUVÉE!"
-        saveBtn.BackgroundColor3 = Color3.fromRGB(0, 255, 0)
-        
-        spawn(function()
-            wait(2)
-            saveBtn.Text = "💾 SAVE BASE POSITION"
-            saveBtn.BackgroundColor3 = Color3.fromRGB(0, 200, 0)
-        end)
+        saveBtn.Text = "SAVED!"
+        saveBtn.BackgroundColor3 = Color3.new(0, 1, 0)
+        wait(1)
+        saveBtn.Text = "SAVE BASE"
+        saveBtn.BackgroundColor3 = Color3.new(0, 0.8, 0)
+        print("Base position saved: " .. tostring(basePosition))
     end
 end)
 
--- Détection optimisée pour Delta PC
-local function onToolAdded(tool)
-    if tool:IsA("Tool") then
-        deltaAutoTP()
+-- Auto TP quand tu ramasses
+player.Backpack.ChildAdded:Connect(function(child)
+    if child:IsA("Tool") then
+        autoTP()
     end
-end
+end)
 
--- Connexions multiples pour Delta PC Emulator
-player.Backpack.ChildAdded:Connect(onToolAdded)
-
--- Setup character
-local function setupCharacter(char)
-    if char then
-        char.ChildAdded:Connect(onToolAdded)
-    end
-end
-
-player.CharacterAdded:Connect(setupCharacter)
 if player.Character then
-    setupCharacter(player.Character)
+    player.Character.ChildAdded:Connect(function(child)
+        if child:IsA("Tool") then
+            autoTP()
+        end
+    end)
 end
 
-print("🧠 BRAINROT AUTO TP - DELTA PC EMULATOR LOADED!")
-print("⚡ Téléportation automatique activée!")
-print("💾 Sauvegarde ta position avec le bouton!")
+player.CharacterAdded:Connect(function(char)
+    char.ChildAdded:Connect(function(child)
+        if child:IsA("Tool") then
+            autoTP()
+        end
+    end)
+end)
+
+print("BRAINROT AUTO TP LOADED!")
+
+
